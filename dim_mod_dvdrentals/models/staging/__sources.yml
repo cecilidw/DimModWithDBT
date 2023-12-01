@@ -1,0 +1,19 @@
+version: 1
+
+sources:
+  - name: dvdrental
+    database: dvdrental
+    schema: main
+    tables:
+      - name: actor
+        description: "A table of actors"
+        columns:
+          - name: actor_id
+            description: "A unique ID for each actor"
+          - name: first_name
+            description: "The first name of the actor"
+          - name: last_name
+            description: "The last name of the actor"
+          - name: last_update
+            description: "The last time the actor was updated"
+
