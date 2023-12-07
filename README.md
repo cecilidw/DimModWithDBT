@@ -31,12 +31,14 @@ C:\Users\cecil\source>duckdb.exe ./duckdbs/dvdrental.db
 
 install postgres;
 load postgres; 
-call postgres_attach('user=postgres password=##### host=localhost port=5432 dbname=dvdrental connect_timeout=10', source_schema='public', sink_schema='dvdrental');
+call postgres_attach('user=postgres password=Joh4nne!23 host=localhost port=5432 dbname=dvdrental');
 pragma show_tables;
-CREATE TABLE stg_actor AS SELECT * FROM actor;
+
+To dump as parquet:
+COPY(SELECT * FROM actor) TO 'actor.parquet' (FORMAT PARQUET);
 
 
-### If doing by downloading this repository:
+
 
 
 

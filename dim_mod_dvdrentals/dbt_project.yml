@@ -30,6 +30,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dim_mod_dvdrentals:
     staging:
-      +materialized: table
+      +materialized: view
     marts:
       +materialized: table

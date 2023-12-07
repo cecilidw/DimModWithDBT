@@ -1,0 +1,231 @@
+version: 1
+
+models:
+  - name: stg_pg__actors
+    columns:
+      - name: actor_id
+        type: int
+        tests:
+          - unique
+      - name: first_name
+        type: string
+      - name: last_name
+        type: string
+      - name: last_update
+        type: timestamp
+  - name: stg_pg__addresses
+    columns:
+      - name: address_id
+        type: int
+        tests:
+          - unique
+      - name: address
+        type: string
+      - name: address2
+        type: string
+      - name: district
+        type: string
+      - name: city_id
+        type: int
+      - name: postal_code
+        type: string
+      - name: phone
+        type: string
+      - name: last_update
+        type: timestamp
+  - name: stg_pg__categories
+    columns:
+      - name: category_id
+        type: int
+        tests:
+          - unique
+      - name: name
+        type: string
+      - name: last_update
+        type: timestamp
+  - name: stg_pg__cities
+    columns:
+      - name: city_id
+        type: int
+        tests:
+          - unique
+      - name: city
+        type: string
+      - name: country_id
+        type: int
+      - name: last_update
+        type: timestamp
+  - name: stg_pg__countries
+    columns:
+      - name: country_id
+        type: int
+        tests:
+          - unique
+      - name: country
+        type: string
+      - name: last_update
+        type: timestamp
+  - name: stg_pg__customers
+    columns:
+      - name: customer_id
+        type: int
+        tests:
+          - unique
+      - name: store_id
+        type: int
+      - name: first_name
+        type: string
+      - name: last_name
+        type: string
+      - name: email
+        type: string
+      - name: address_id
+        type: int
+      - name: activebool
+        type: boolean
+      - name: create_date
+        type: date
+      - name: last_update
+        type: timestamp
+      - name: active
+        type: int
+  - name: stg_pg__films
+    columns:
+      - name: film_id
+        type: int
+        tests:
+          - unique
+      - name: title
+        type: string
+      - name: description
+        type: string
+      - name: release_year
+        type: string
+      - name: language_id
+        type: int
+      - name: rental_duration
+        type: int
+      - name: rental_rate
+        type: numeric
+      - name: length
+        type: int
+      - name: replacement_cost
+        type: numeric
+      - name: rating
+        type: string
+      - name: last_update
+        type: timestamp
+      - name: special_features
+        type: string
+      - name: fulltext
+        type: string
+  - name: stg_pg__film_actors
+    columns:
+      - name: actor_id
+        type: int
+      - name: film_id
+        type: int
+      - name: last_update
+        type: timestamp
+  - name: stg_pg__film_categories
+    columns:
+      - name: film_id
+        type: int
+      - name: category_id
+        type: int
+      - name: last_update
+        type: timestamp
+  - name: stg_pg__inventories
+    columns:
+      - name: inventory_id
+        type: int
+        tests:
+          - unique
+      - name: film_id
+        type: int
+      - name: store_id
+        type: int
+      - name: last_update
+        type: timestamp
+  - name: stg_pg__languages
+    columns:
+      - name: language_id
+        type: int
+        tests:
+          - unique
+      - name: name
+        type: string
+      - name: last_update
+        type: timestamp
+  - name: stg_pg__payments
+    columns:
+      - name: payment_id
+        type: int
+        tests:
+          - unique
+      - name: customer_id
+        type: int
+      - name: staff_id
+        type: int
+      - name: rental_id
+        type: int
+      - name: amount
+        type: numeric
+      - name: payment_date
+        type: timestamp
+  - name: stg_pg__rentals
+    columns:
+      - name: rental_id
+        type: int
+        tests:
+          - unique
+      - name: rental_date
+        type: timestamp
+      - name: inventory_id
+        type: int
+      - name: customer_id
+        type: int
+      - name: return_date
+        type: timestamp
+      - name: staff_id
+        type: int
+      - name: last_update
+        type: timestamp
+  - name: stg_pg__staff
+    columns:
+      - name: staff_id
+        type: int
+        tests:
+          - unique
+      - name: first_name
+        type: string
+      - name: last_name
+        type: string
+      - name: address_id
+        type: int
+      - name: email
+        type: string
+      - name: store_id
+        type: int
+      - name: active
+        type: boolean
+      - name: username
+        type: string
+      - name: password
+        type: string
+      - name: last_update
+        type: timestamp
+      - name: picture
+        type: binary
+  - name: stg_pg__stores
+    columns:
+      - name: store_id
+        type: int
+        tests:
+          - unique
+      - name: manager_staff_id
+        type: int
+      - name: address_id
+        type: int
+      - name: last_update
+        type: timestamp
