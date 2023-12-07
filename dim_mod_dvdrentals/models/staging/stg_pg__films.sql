@@ -10,4 +10,4 @@ select film_id,
        rating,
        special_features,
        last_update
-from {{ source('dvdrental', 'film') }}
+from {{ source('dvdrental', 'film_t') }}

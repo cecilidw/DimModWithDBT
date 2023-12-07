@@ -87,7 +87,7 @@ sources:
             description: "The last time the customer was updated"
           - name: active
             description: "Whether the customer is active"
-      - name: film
+      - name: film_t
         description: "A table of films"
         columns:
           - name: film_id
