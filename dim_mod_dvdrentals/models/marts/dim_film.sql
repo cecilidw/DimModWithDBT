@@ -17,7 +17,6 @@ select
     f.replacement_cost,
     f.rating,
     f.special_features,
-    f.fulltext,
     f.title as film_title, 
     l.name as language_name, 
     c.category
