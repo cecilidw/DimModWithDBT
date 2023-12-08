@@ -75,7 +75,7 @@ models:
         type: string
       - name: release_year
         type: int
-      - name: language_id
+      - name: language_name
         type: int
       - name: rental_duration
         type: int

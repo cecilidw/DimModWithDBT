@@ -9,6 +9,15 @@ with cats as (
 select 
     {{ dbt_utils.generate_surrogate_key(['f.film_id'])}} as film_key,
     f.film_id,
+    f.description,
+    f.release_year,
+    f.rental_duration,
+    f.rental_rate,
+    f.length,
+    f.replacement_cost,
+    f.rating,
+    f.special_features,
+    f.fulltext,
     f.title as film_title, 
     l.name as language_name, 
     c.category
