@@ -1,4 +1,5 @@
 select
+    {{ dbt_utils.generate_surrogate_key(['address_id'])}} as address_key,
     ad.address_id,
     ci.city_id,
     co.country_id,

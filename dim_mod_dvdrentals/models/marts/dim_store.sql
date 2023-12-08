@@ -1,4 +1,5 @@
 select 
+    {{ dbt_utils.generate_surrogate_key(['so.store_id'])}} as store_key,
     so.store_id,
     so.manager_staff_id,
     concat(sa.first_name, ' ', sa.last_name) as manager_full_name,

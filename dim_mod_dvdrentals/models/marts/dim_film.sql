@@ -7,6 +7,7 @@ with cats as (
     )
 
 select 
+    {{ dbt_utils.generate_surrogate_key(['f.film_id'])}} as film_key,
     f.film_id,
     f.title as film_title, 
     l.name as language_name, 
