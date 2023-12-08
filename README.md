@@ -1,44 +1,33 @@
-# DimModWithDBT
-Dimensional modelling with DBT
+# Dimensional modelling with Postgres, dbt and DuckDB
+
 
 ## Description
 
-A project implementing dimensional modelling with DBT and DuckDB. 
-Source: Postgres dvdrental sample db.
+This is my personal project for practice of my skillset. Specifically, I want to start getting some experience with dimensional modelling for datawarehouses, [data build tool](https://docs.getdbt.com/) for transformation in SQL, as well as using [DuckDB](https://duckdb.org/) for the first time. It doesn't hurt to get more experieced in using git, GitHub, SQL, Python and other basic tools at the same time.   
 
-## How to:
+My source is a Postgres DB running on localhost, where I have restored a version of the [Sakila Sample Database](https://dev.mysql.com/doc/sakila/en/). To "extract" data into DuckDB I used the [DuckDB PostgreSQL Scanner Extension](https://duckdb.org/2022/09/30/postgres-scanner). 
 
-### If doing for the first time 
+### Sources
 
-- create git repo and clone to local directory, create local branch and check it out. Remember git adding continuously, and committing when appropriate. 
-- Download [dvdrental zip file](https://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip) 
-- install postgres
-- create database dvdrental in postgres
-- use PGAdmin to restore  dvdrental tar file into database (if you need instructions, find them [here](https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/))
-- install duck db
-- install dbt adaptor for duckdb:
-If no virtual environment:
-python -m pip install dbt-duckdb 
-(The -m flag makes sure that you are using the pip that's tied to the active Python executable.)
-If virtual environment:
-pip install dbt-duckdb
-- run dbt init from terminal/cmd and folder where you want to create your project (in my case, the folder where my git repo was cloned to), answer prompts with name of project & choose duckdb as adaptor. 
+I've modelled my workflow after [this dbt blog post](https://docs.getdbt.com/blog/kimball-dimensional-model) by Jonathan Neo, only I used a different dataset and a different source. I am also using the original ["Data Warehouse Toolkit"](https://www.goodreads.com/book/show/748203.The_Data_Warehouse_Toolkit) book, by Kimball and Ross. 
 
-- create folder integration in dbt project, create subdirs 'source' and 'destination'. In source folder add the dvdrental zip file, in destination a sqlscript that loads the tables from postgres to duckdb? Or maybe just skip doing this in dbt, and copy the tables from postgres to duckdb with the PostgreSQL Scanner Extension:
+### Current status:
 
-Start duckdb with path parameter, like so:
-C:\Users\cecil\source>duckdb.exe ./duckdbs/dvdrental.db
+#### Bugs / workarounds
+I've merged in my first DEV branch, with a complete set of code and docs. There are tasks to be done and improvements to be made, but my first goal was to get a complete sample up and running. 
+Specifically I have struggled with the Scanner Extension in DuckDB, it throws a Runtime Error about loading the extension when it was already loaded. Possibly already reported [here](https://github.com/duckdb/dbt-duckdb/issues/179). It seems to not affect the models in any other way that the dbt run command is a bit unstable in creating the models. It needs to be ran a couple of times before the views/tables for all models are persisted in the duckdb file. Also, I suspect it causes the ref-macro to not find the staging models in marts models code. I'll see what I can do to fix this, it was supposed to be fixed in more recent versions according to the issue thread. Also, I did a workaround by copy into table in duckdb from one of the views it creates from the scanner, it complained about inconsistency in the view. Will research this one more as well.  
 
-install postgres;
-load postgres; 
-call postgres_attach('user=postgres password=Joh4nne!23 host=localhost port=5432 dbname=dvdrental');
-pragma show_tables;
+#### To Do
 
-To dump as parquet:
-COPY(SELECT * FROM actor) TO 'actor.parquet' (FORMAT PARQUET);
+- [ ] Generate date dimension
+- [ ] Do something with actors, add them to film dimension
+- [ ] Fix error message that blocks the use of ref macro on the staging models
+- [ ] Include dim_address of customer as customer_address in fct_rental?
+- [ ] Check schema.yml in marts for inconsistencies (I suspect at least some)
+- [ ] Add more tests
+- [ ] Add more meaningful documentation
+- [ ] How to handle changes in data - CDC, CRUDs, what does one do... in dbt.
 
 
 
-
-
-
+### How to: TBD
