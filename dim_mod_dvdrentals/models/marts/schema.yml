@@ -1,0 +1,158 @@
+version: 1
+
+models:
+  - name: dim_address
+    columns:
+      - name: address_id
+        type: int
+        tests:
+          - unique
+      - name: address
+        type: string
+      - name: address2
+        type: string
+      - name: district
+        type: string
+      - name: city_id
+        type: int
+      - name: postal_code
+        type: string
+      - name: phone
+        type: string
+      - name: last_update
+        type: timestamp
+      - name: country
+        type: string
+      - name: city
+        type: string
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        type: int
+        tests:
+          - unique
+      - name: store_id
+        type: int
+      - name: first_name
+        type: string
+      - name: last_name
+        type: string
+      - name: email
+        type: string
+      - name: address_id
+        type: int
+      - name: activebool
+        type: boolean
+      - name: create_date
+        type: timestamp
+      - name: active
+        type: int
+      - name: address
+        type: string
+      - name: address2
+        type: string
+      - name: district
+        type: string
+      - name: city_id
+        type: int
+      - name: postal_code
+        type: string
+      - name: phone
+        type: string
+      - name: country
+        type: string
+      - name: city
+        type: string
+  - name: dim_film
+    columns:
+      - name: film_id
+        type: int
+        tests:
+          - unique
+      - name: title
+        type: string
+      - name: description
+        type: string
+      - name: release_year
+        type: int
+      - name: language_name
+        type: int
+      - name: rental_duration
+        type: int
+      - name: rental_rate
+        type: numeric
+      - name: length
+        type: int
+      - name: replacement_cost
+        type: numeric
+      - name: rating
+        type: string
+      - name: last_update
+        type: timestamp
+      - name: special_features
+        type: string
+      - name: fulltext
+        type: string
+      - name: language
+        type: string
+      - name: category
+        type: string
+      - name: actors
+        type: string
+      - name: language
+        type: string
+  - name: dim_store
+    columns:
+      - name: store_id
+        type: int
+        tests:
+          - unique
+      - name: manager_staff_id
+        type: int
+      - name: manager_fullname
+        type: string
+      - name: manager_email
+        type: string
+      - name: manager_address_id
+        type: int
+      - name: store_address_id
+        type: int
+      - name: store_address
+        type: string
+      - name: store_address2
+        type: string
+      - name: store_district
+        type: string
+      - name: store_city_id
+        type: int
+      - name: store_postal_code
+        type: string
+      - name: store_phone
+        type: string
+      - name: store_country
+        type: string
+      - name: store_city
+        type: string
+  - name: fct_rental
+    columns:
+      - name: rental_id
+        type: int
+        tests:
+          - unique
+      - name: rental_date
+        type: timestamp
+      - name: inventory_id
+        type: int
+      - name: customer_id
+        type: int
+      - name: return_date
+        type: timestamp
+      - name: staff_id
+        type: int
+      - name: film_id
+        type: int
+      - name: store_id
+        type: int
+      - name: amount
+        type: numeric
+      

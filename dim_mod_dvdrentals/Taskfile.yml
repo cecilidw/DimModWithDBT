@@ -1,0 +1,18 @@
+version:1
+
+tasks:
+  conda:
+    cmds:
+      - conda create -n dim_mod_dvdrentals python=3.11 -y
+      - conda activate dim_mod_dvdrentals
+
+  install:
+    cmds:
+      - python -m pip install --upgrade pip
+      
+      - python -m pip install -r requirements.txt
+
+  setup:
+    cmds:
+      - dbt deps
+      - dbt seed

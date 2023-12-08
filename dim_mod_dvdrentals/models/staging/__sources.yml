@@ -1,0 +1,225 @@
+version: 1
+
+sources:
+  - name: dvdrental
+    database: dvdrental
+    schema: main
+    tables:
+      - name: actor
+        description: "A table of actors"
+        columns:
+          - name: actor_id
+            description: "A unique ID for each actor"
+          - name: first_name
+            description: "The first name of the actor"
+          - name: last_name
+            description: "The last name of the actor"
+          - name: last_update
+            description: "The last time the actor was updated"
+      - name: address
+        description: "A table of addresses"
+        columns:
+          - name: address_id
+            description: "A unique ID for each address"
+          - name: address
+            description: "The address"
+          - name: address2
+            description: "The second line of the address"
+          - name: district
+            description: "The district of the address"
+          - name: city_id
+            description: "The city ID of the address"
+          - name: postal_code
+            description: "The postal code of the address"
+          - name: phone
+            description: "The phone number of the address"
+          - name: last_update
+            description: "The last time the address was updated"
+      - name: category
+        description: "A table of categories"
+        columns:
+          - name: category_id
+            description: "A unique ID for each category"
+          - name: name
+            description: "The name of the category"
+          - name: last_update
+            description: "The last time the category was updated"
+      - name: city
+        description: "A table of cities"
+        columns:
+          - name: city_id
+            description: "A unique ID for each city"
+          - name: city
+            description: "The city"
+          - name: country_id
+            description: "The country ID of the city"
+          - name: last_update
+            description: "The last time the city was updated"
+      - name: country
+        description: "A table of countries"
+        columns:
+          - name: country_id
+            description: "A unique ID for each country"
+          - name: country
+            description: "The country"
+          - name: last_update
+            description: "The last time the country was updated"
+      - name: customer
+        description: "A table of customers"
+        columns:
+          - name: customer_id
+            description: "A unique ID for each customer"
+          - name: store_id
+            description: "The store ID of the customer"
+          - name: first_name
+            description: "The first name of the customer"
+          - name: last_name
+            description: "The last name of the customer"
+          - name: email
+            description: "The email of the customer"
+          - name: address_id
+            description: "The address ID of the customer"
+          - name: activebool
+            description: "Whether the customer is active"
+          - name: create_date
+            description: "The date the customer was created"
+          - name: last_update
+            description: "The last time the customer was updated"
+          - name: active
+            description: "Whether the customer is active"
+      - name: film_t
+        description: "A table of films"
+        columns:
+          - name: film_id
+            description: "A unique ID for each film"
+          - name: title
+            description: "The title of the film"
+          - name: description
+            description: "The description of the film"
+          - name: release_year
+            description: "The release year of the film"
+          - name: language_id
+            description: "The language ID of the film"
+          - name: rental_duration
+            description: "The rental duration of the film"
+          - name: rental_rate
+            description: "The rental rate of the film"
+          - name: length
+            description: "The length of the film"
+          - name: replacement_cost
+            description: "The replacement cost of the film"
+          - name: rating
+            description: "The rating of the film"
+          - name: last_update
+            description: "The last time the film was updated"
+          - name: special_features
+            description: "The special features of the film"
+          - name: fulltext
+            description: "The full text of the film"
+      - name: film_actor
+        description: "A table of film actors"
+        columns:
+          - name: actor_id
+            description: "A unique ID for each actor"
+          - name: film_id
+            description: "A unique ID for each film"
+          - name: last_update
+            description: "The last time the film actor was updated"
+      - name: film_category
+        description: "A table of film categories"
+        columns:
+          - name: film_id
+            description: "A unique ID for each film"
+          - name: category_id
+            description: "A unique ID for each category"
+          - name: last_update
+            description: "The last time the film category was updated"
+      - name: inventory
+        description: "A table of inventory"
+        columns:
+          - name: inventory_id
+            description: "A unique ID for each inventory"
+          - name: film_id
+            description: "A unique ID for each film"
+          - name: store_id
+            description: "The store ID of the inventory"
+          - name: last_update
+            description: "The last time the inventory was updated"
+      - name: language
+        description: "A table of languages"
+        columns:
+          - name: language_id
+            description: "A unique ID for each language"
+          - name: name
+            description: "The name of the language"
+          - name: last_update
+            description: "The last time the language was updated"
+      - name: payment
+        description: "A table of payments"
+        columns:
+          - name: payment_id
+            description: "A unique ID for each payment"
+          - name: customer_id
+            description: "A unique ID for each customer"
+          - name: staff_id
+            description: "A unique ID for each staff member"
+          - name: rental_id
+            description: "A unique ID for each rental"
+          - name: amount
+            description: "The amount of the payment"
+          - name: payment_date
+            description: "The date of the payment"
+      - name: rental
+        description: "A table of rentals"
+        columns:
+          - name: rental_id
+            description: "A unique ID for each rental"
+          - name: rental_date
+            description: "The date of the rental"
+          - name: inventory_id
+            description: "A unique ID for each inventory"
+          - name: customer_id
+            description: "A unique ID for each customer"
+          - name: return_date
+            description: "The date of the return"
+          - name: staff_id
+            description: "A unique ID for each staff member"
+          - name: last_update
+            description: "The last time the rental was updated"
+      - name: staff
+        description: "A table of staff"
+        columns:
+          - name: staff_id
+            description: "A unique ID for each staff member"
+          - name: first_name
+            description: "The first name of the staff member"
+          - name: last_name
+            description: "The last name of the staff member"
+          - name: address_id
+            description: "The address ID of the staff member"
+          - name: email
+            description: "The email of the staff member"
+          - name: store_id
+            description: "The store ID of the staff member"
+          - name: active
+            description: "Whether the staff member is active"
+          - name: username
+            description: "The username of the staff member"
+          - name: password
+            description: "The password of the staff member"
+          - name: last_update
+            description: "The last time the staff member was updated"
+          - name: picture
+            description: "The picture of the staff member"
+      - name: store
+        description: "A table of stores"
+        columns:
+          - name: store_id
+            description: "A unique ID for each store"
+          - name: manager_staff_id
+            description: "A unique ID for each staff member"
+          - name: address_id
+            description: "The address ID of the store"
+          - name: last_update
+            description: "The last time the store was updated"
+     
