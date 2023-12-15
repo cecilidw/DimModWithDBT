@@ -13,17 +13,17 @@ I've modelled my workflow after [this dbt blog post](https://docs.getdbt.com/blo
 
 ### Current status:
 
+I have a working workflow that transform oltp source tables in local postgres server into dimensional models. I have quite a few improvements I want to make, see the to do section below. 
+
 #### Bugs / workarounds
-I've merged in my first DEV branch, with a complete set of code and docs. There are tasks to be done and improvements to be made, but my first goal was to get a complete sample up and running. 
-Specifically I have struggled with the Scanner Extension in DuckDB, it throws a Runtime Error about loading the extension when it was already loaded. Possibly already reported [here](https://github.com/duckdb/dbt-duckdb/issues/179). It seems to not affect the models in any other way that the dbt run command is a bit unstable in creating the models. It needs to be ran a couple of times before the views/tables for all models are persisted in the duckdb file. Also, I suspect it causes the ref-macro to not find the staging models in marts models code. I'll see what I can do to fix this, it was supposed to be fixed in more recent versions according to the issue thread. Also, I did a workaround by copy into table in duckdb from one of the views it creates from the scanner, it complained about inconsistency in the view. Will research this one more as well.  
+I resolved some error messages that were due to a malconfiguration in profiles.yml, described in a comment [here](https://github.com/duckdb/dbt-duckdb/issues/179) Also, I did a workaround by copy into table in duckdb from one of the views it creates from the scanner, it complained about inconsistency in the view. Will research this one more as well. 
 
 #### To Do
 
 - [ ] Generate date dimension
-- [ ] Do something with actors, add them to film dimension
-- [ ] Fix error message that blocks the use of ref macro on the staging models
-- [ ] Include dim_address of customer as customer_address in fct_rental?
-- [ ] Check schema.yml in marts for inconsistencies (I suspect at least some)
+- [ ] Do something with actors, add them to film dimension?
+- [X] Fix error message that blocks the use of ref macro on the staging models
+- [ ] Include dim_address of customer as customer_address in fct_rental
 - [ ] Add more tests
 - [ ] Add more meaningful documentation
 - [ ] How to handle changes in data - CDC, CRUDs, what does one do... in dbt.
