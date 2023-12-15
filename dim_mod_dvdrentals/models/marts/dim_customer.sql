@@ -15,7 +15,7 @@ select
     co.country,
     ci.city
 from 
-    dvdrental.main.stg_pg__customers as c
-        left join dvdrental.main.stg_pg__addresses as a on c.address_id = a.address_id
-            left join dvdrental.main.stg_pg__cities as ci on a.city_id = ci.city_id
-                left join dvdrental.main.stg_pg__countries as co on ci.country_id = co.country_id
+    {{ ref('stg_pg__customers')}} as c
+        left join {{ ref('stg_pg__addresses')}} as a on c.address_id = a.address_id
+            left join {{ ref('stg_pg__cities')}} as ci on a.city_id = ci.city_id
+                left join {{ ref('stg_pg__countries')}} as co on ci.country_id = co.country_id
