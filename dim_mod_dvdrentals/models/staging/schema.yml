@@ -229,3 +229,9 @@ models:
         type: int
       - name: last_update
         type: timestamp
+  - name: stg_dates
+    columns:
+      - name: date_day
+        type: date
+        tests:
+          - unique
