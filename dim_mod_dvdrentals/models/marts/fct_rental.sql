@@ -11,6 +11,7 @@ select
     r.rental_id,
     r.rental_date,
     r.return_date,
+    r.last_update,
     {{ dbt_utils.generate_surrogate_key(['r.customer_id'])}} as customer_key,
     {{ dbt_utils.generate_surrogate_key(['i.film_id'])}} as film_key,
     {{ dbt_utils.generate_surrogate_key(['i.store_id'])}} as store_key,

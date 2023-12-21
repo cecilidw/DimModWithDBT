@@ -13,23 +13,28 @@ I've modelled my workflow after [this dbt blog post](https://docs.getdbt.com/blo
 
 ### Current status:
 
-I have a working workflow that transform oltp source tables in local postgres server into dimensional models in duckdb. I have more dbt stuff I want to explore, see the to do section below. I recently added a date dimension, but I am unsure if it should only be used in views, or if I should implement role playing dimension through creating different surrogate keys in the fact table to the date table for the different date fields. Will leave it as-is for now, I need to understand this better.  
+I have a working workflow that transform oltp source tables in local postgres server into dimensional models in duckdb. I have more dbt stuff I want to explore, see the to do section below. 
+
+I recently added a date dimension, but I am unsure if it should only be used in views, or if I should implement role playing dimension through creating different surrogate keys in the fact table to the date table for the different date fields. Will leave it as-is for now, I need to understand this better. 
+
+Also, I briefly looked into how to handle changes and created one snapshot file of the rental staging table. Snapshots in dbt implements Slowly Changing Dimensions Type 2 strategy. Supposedly hard deletes can also be handled with snapshot configuration.
 
 Project DAG:
 
 ![current DAG for the project](/docs/dbt-dag.png)
 
 #### Bugs / workarounds
-I resolved some error messages that were due to a malconfiguration in profiles.yml, described in a comment [here](https://github.com/duckdb/dbt-duckdb/issues/179) Also, I did a workaround by copy into table in duckdb from one of the views it creates from the scanner, it complained about inconsistency in the view. Will research this one more as well. 
+I resolved some error messages that were due to a malconfiguration in profiles.yml, described in a comment in dbt-duckdb repo, issue 179. Also, I did a workaround by copy into table in duckdb from one of the views it creates from the scanner, it complained about inconsistency in the view. Will research this one more as well. 
 
 #### To Do
 
 - [X] Add date dimension
 - [X] Fix error message that blocks the use of ref macro on the staging models
-- [ ] Add more tests
-- [ ] Add more meaningful documentation
-- [ ] How to handle changes in data - CDC, CRUDs, what does one do... in dbt (snapshots aso).
-- [ ] Research error message about inconsistent views.
+- [ ] Add more tests, singular and generic
+- [ ] Add more documentation
+- [ ] Add hooks
+- [X] How to handle changes in data - CDC, CRUDs, what does one do... in dbt (snapshots aso).
+- [ ] Research error message about inconsistent views
 
 
 
@@ -55,7 +60,7 @@ My duckdb database file also is outside of the repo. I have opened it and run th
 
 Tip! Avoid this noob error when running dbt commands: issue the command from a different folder than dim_mod_dvdrentals. That won't work. 
 
-2nd Tip! Make sure the duckdb database file is not opened somewhere else when you run the dbt commands that need to use it. Duckdb supports concurrency but only one process. The error message is not self explanatory:
+2nd Tip! Make sure the duckdb database file is not opened somewhere else when you run the dbt commands that need to use it. Duckdb [supports concurrency but only one process](https://duckdb.org/faq.html#how-does-duckdb-handle-concurrency). The error message is not self explanatory:
 
 ` Encountered an error:
 Runtime Error
